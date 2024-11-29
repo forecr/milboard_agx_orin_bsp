@@ -1,9 +1,9 @@
 {
   "information": {
     "release": {
-      "releaseVersion": "5.1.1",
+      "releaseVersion": "5.1.2",
       "releaseEdition": "",
-      "releaseRevision": 1
+      "releaseRevision": 0
     }
   },
   "sw": {
@@ -11,23 +11,26 @@
       "name": "File System, OS and Forecr AGX Orin Milboard AGX BSP Install",
       "isVisible": true,
       "isDetectableInstall": false,
+      "estimateInstallDurationSeconds": 500,
       "platforms": [
         {
           "targetIds": [
             "JETSON_AGX_ORIN_TARGETS"
           ],
           "prerequisites": [
-            "PREREQUISITE_APT_HOST"
+            {
+              "prerequisiteID": "PREREQUISITE_APT_HOST"
+            }
           ],
           "architectures": [
             "x86_64"
           ],
           "downloadFiles": [
             {
-              "url": "T234/Tegra_Linux_Sample-Root-Filesystem_R35.3.1_aarch64.tbz2",
-              "fileName": "Tegra_Linux_Sample-Root-Filesystem_R35.3.1_aarch64.tbz2",
-              "size": 1499224890,
-              "checksum": "12bd3ed977eb86f6b13e90a2000022de",
+              "url": "T234/Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "fileName": "Tegra_Linux_Sample-Root-Filesystem_R35.4.1_aarch64.tbz2",
+              "size": 1505929477,
+              "checksum": "f25931d1b15cc10d11b60395bd33ec1a",
               "checksumType": "md5",
               "verifyChecksum": "yes",
               "packageInstallParameters": {
@@ -41,11 +44,9 @@
                         "sudo ./tools/l4t_flash_prerequisites.sh",
                         "sudo ./apply_binaries.sh",
                         "sudo mkdir -p rootfs/opt/nvidia/deb_repos",
-                        "wget https://github.com/forecr/milboard_agx_orin_bsp/raw/master/agx_orin_JP5_1_1_bsp.tar.xz 2>downloadstatus.txt",
-                        "tar -xf agx_orin_JP5_1_1_bsp.tar.xz",
-                        "cp ./agx_orin_JP5_1_1_bsp/* ../",
-                        "sudo ./tools/l4t_flash_prerequisites.sh",
-                        "sudo ./apply_binaries.sh",
+                        "wget https://github.com/forecr/milboard_agx_orin_bsp/raw/master/milboard_agx_agx_orin_JP5_1_2_bsp.tar.xz 2>downloadstatus.txt",
+                        "tar -xf milboard_agx_agx_orin_JP5_1_2_bsp.tar.xz",
+                        "cp ./milboard_agx_agx_orin_JP5_1_2_bsp/* ../",
                         "cd ..",
                         "sudo ./replace_bsp_files.sh",
                         "cd Linux_for_Tegra/"
@@ -68,14 +69,14 @@
               "id": "NV_L4T_DRIVERS_COMP"
             }
           ],
-          "installSizeMB": 4958.77
+          "installSizeMB": 4992.66
         }
       ],
-      "version": "35.3",
-      "id": "NV_L4T_FILE_SYSTEM_AND_OS_FORECR_BSP_PACKAGE_COMP",
+      "version": "35.4",
       "licenseIds": [
         "NV_JETPACK_OS_EMBEDDED_EULA"
       ],
+      "id": "NV_L4T_FILE_SYSTEM_AND_OS_FORECR_BSP_PACKAGE_COMP",
       "isPartiallyDetectableInstall": false,
       "installPath": "{{TARGET_ROOT}}/{{BUNDLE_TITLE}}_{{BOARD_ID}}/Linux_for_Tegra/rootfs/"
     },
@@ -93,8 +94,8 @@
                 "execBash": [
                   "set -e",
                   "unset LC_ALL",
-                  "echo sudo ./flash.sh jetson-agx-orin-devkit mmcblk0p1",
-                  "sudo ./flash.sh jetson-agx-orin-devkit mmcblk0p1",
+                  "echo sudo ./flash.sh jetson-agx-orin-devkit mmcblk0p1 {{FLASH_OPTIONS}}",
+                  "sudo ./flash.sh jetson-agx-orin-devkit mmcblk0p1 {{FLASH_OPTIONS}}",
                   "sleep 20"
                 ]
               }
@@ -121,7 +122,7 @@
           "prerequisites": []
         }
       ],
-      "version": "35.3",
+      "version": "35.4",
       "licenseIds": [
         "NV_JETPACK_OS_EMBEDDED_EULA"
       ],
@@ -172,7 +173,7 @@
         {
           "id": "custom",
           "displayName": "Custom",
-          "flashOptions": "--custom ./nvautoflash.sh"
+          "flashOptions": ""
         }
       ],
       "id": "JETSON_AGX_ORIN_32GB"
@@ -218,7 +219,7 @@
         {
           "id": "custom",
           "displayName": "Custom",
-          "flashOptions": "--custom ./nvautoflash.sh"
+          "flashOptions": "--custom"
         }
       ],
       "id": "JETSON_AGX_ORIN_64GB"
@@ -264,7 +265,7 @@
         {
           "id": "custom",
           "displayName": "Custom",
-          "flashOptions": "--custom ./nvautoflash.sh"
+          "flashOptions": "--custom"
         }
       ],
       "id": "JETSON_AGX_ORIN_IND_64GB"
